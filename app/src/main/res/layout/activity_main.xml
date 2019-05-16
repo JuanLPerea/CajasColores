@@ -85,12 +85,13 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
+
+    <ImageButton
+        android:id="@+id/empezarBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="San Isidro"
-        android:textSize="40dp" />
+        android:onClick="empezarPartida"
+        android:src="@android:drawable/ic_media_play" />
 
 </FrameLayout>
