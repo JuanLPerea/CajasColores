@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private int color;
     private int numtoques;
+    private long tiempo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.color = getResources().getColor(R.color.negro);
         this.numtoques = 0;
+
+        tiempo = System.currentTimeMillis();
 
     }
 
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             cajatocada.setBackgroundColor(this.color);
             numtoques++;
             if (numtoques == 6) {
+                tiempo = System.currentTimeMillis() - tiempo;
+                Toast.makeText(this, "Has tardado " + (tiempo /1000) + " segundos.", Toast.LENGTH_LONG).show();
                 salir();
             }
         }
