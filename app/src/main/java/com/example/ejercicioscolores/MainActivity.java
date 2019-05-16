@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         this.color = getResources().getColor(R.color.negro);
         this.numtoques = 0;
 
-        tiempo = System.currentTimeMillis();
+
 
     }
 
@@ -34,9 +34,12 @@ public class MainActivity extends AppCompatActivity {
             v.setTag(true);
             cajatocada.setBackgroundColor(this.color);
             numtoques++;
+            if (numtoques == 1) tiempo = System.currentTimeMillis();
             if (numtoques == 6) {
                 tiempo = System.currentTimeMillis() - tiempo;
-                Toast.makeText(this, "Has tardado " + (tiempo /1000) + " segundos.", Toast.LENGTH_LONG).show();
+                Double tiempodbl = tiempo / 1000d;
+                String tiempotxt = String.format("Has tardado: %1$.3f segundos", tiempodbl);
+                Toast.makeText(this,  tiempotxt , Toast.LENGTH_LONG).show();
                 salir();
             }
         }
