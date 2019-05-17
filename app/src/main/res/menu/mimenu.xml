@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_line_style_black_24dp"
+        android:id="@+id/juego1menu"
+        android:title="Juego 1"
+        app:showAsAction="always"
+
+        />
+    <item
+        android:id="@+id/juego2menu"
+        android:title="Juego 2"
+        />
+    <item
+        android:id="@+id/juego3menu"
+        android:title="Juego 3" />
+</menu>

@@ -86,12 +86,12 @@
     </LinearLayout>
 
 
-    <ImageButton
+    <Button
         android:id="@+id/empezarBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="empezarPartida"
-        android:src="@android:drawable/ic_media_play" />
+        android:text="Empezar" />
 
 </FrameLayout>
