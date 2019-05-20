@@ -25,7 +25,6 @@ public class AleatorioActivity extends AppCompatActivity {
         numeroFilas = 10;
         numeroColumnas = 10;
 
-
         layoutAleatorio();
 
     }
@@ -63,16 +62,14 @@ public class AleatorioActivity extends AppCompatActivity {
         int maxpeso = 30;
         int minpeso = 10;
         int[] salidapesos = new int[pesos.length + 1];
-
-
-
+        
 
         Log.d("MIAPP", "NUMERO FILAS " + pesos.length);
         for (int cnd = 0 ; cnd < pesos.length - 1 ; cnd++) {
             if (totalpeso < maxpeso) {
-                salidapesos[cnd] = r.nextInt(totalpeso);
+                salidapesos[cnd] = r.nextInt(totalpeso - minpeso) + minpeso;
             } else {
-                salidapesos[cnd] = r.nextInt(maxpeso);
+                salidapesos[cnd] = r.nextInt(maxpeso - minpeso) + minpeso;
             }
 
             Log.d("MIAPP", "PESO " + salidapesos[cnd]);
