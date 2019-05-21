@@ -2,18 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item android:title="Reiniciar"
+        android:icon="@drawable/ic_replay_black_24dp"
+        android:id="@+id/reiniciarBTN"
+        app:showAsAction="always"/>
+    <item android:title="Pausa"
+        android:icon="@drawable/ic_pause_black_24dp"
+        android:id="@+id/pausaBTN"
+        app:showAsAction="always"/>
     <item
-        android:icon="@drawable/ic_line_style_black_24dp"
         android:id="@+id/juego1menu"
-        android:title="Juego 1"
-        app:showAsAction="always"
+        android:icon="@drawable/ic_line_style_black_24dp"
+        android:title="Clasico"
 
         />
     <item
         android:id="@+id/juego2menu"
-        android:title="Juego 2"
-        />
+        android:title="Divide Cuadros" />
     <item
         android:id="@+id/juego3menu"
-        android:title="Juego 3" />
+        android:title="Aleatorio" />
 </menu>

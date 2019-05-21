@@ -10,4 +10,5 @@
     <color name="magenta">#E700FF</color>
     <color name="cyan">#00E0FF</color>
     <color name="negro">#000000</color>
+    <color name="opacar">#66000000</color>
 </resources>

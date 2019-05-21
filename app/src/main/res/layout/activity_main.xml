@@ -94,4 +94,14 @@
         android:onClick="empezarPartida"
         android:text="Empezar" />
 
+    <ImageView
+        android:id="@+id/mainpausaTV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/pausa"
+        android:onClick="reanudarPausa"
+        android:padding="20dp"
+        android:visibility="invisible" />
+
 </FrameLayout>

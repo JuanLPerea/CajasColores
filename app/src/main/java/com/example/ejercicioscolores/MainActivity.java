@@ -52,12 +52,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void salir() {
+
+        Intent intent = new Intent(this, SpinnerActivity.class);
+        startActivity(intent);
+
+        /*
         // Cerrar la actividad
         this.finish();
         // Cerrar del todo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             this.finishAffinity();
         }
+
+        */
     }
 
     public void empezarPartida(View v) {
@@ -105,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(this, AleatorioActivity.class);
                 startActivity(intent2);
                 this.finish();
+                break;
+            case R.id.pausaBTN:
+
                 break;
             default:
 

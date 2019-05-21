@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AleatorioActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SetNumHijos" />
+        <activity android:name=".AleatorioActivity" />
         <activity android:name=".DuplicarActivity" />
         <activity android:name=".BotonesActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SpinnerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
