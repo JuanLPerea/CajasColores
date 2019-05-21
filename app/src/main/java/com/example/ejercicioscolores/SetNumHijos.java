@@ -27,7 +27,6 @@ public class SetNumHijos extends AppCompatActivity {
         dificultadPicker.setMaxValue(30);
         dificultadPicker.setValue(15);
 
-
     }
 
     public void jugar(View v) {
