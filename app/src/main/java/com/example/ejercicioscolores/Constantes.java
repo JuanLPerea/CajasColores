@@ -16,9 +16,7 @@ public class Constantes {
     public static final String NUNTOKES = "dificultad";
     public static final String NOMBREJUGADOR = "nombre";
 
-    private static final String NOMBRE_FICHERO = "ficherorecords";
-    private static final String CLAVE_CADENA = "records";
-
+    public static final String HISTORICO_RECORDS ="historico";
 
 
 

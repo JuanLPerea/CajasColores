@@ -28,7 +28,7 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
     private static final String[] NOMBRES = {"SELECCIONA UNA OPCION", "JUEGO TRADICIONAL", "DUPLICA CAJAS", "PANTALLA ALEATORIA"};
 
     private TextView recordsTV;
-    private String records;
+    private EditText nickName;
 
 
     @Override
@@ -36,13 +36,25 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spinner);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerVersion);
+        Spinner spinner = findViewById(R.id.spinnerVersion);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, NOMBRES);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner.setOnItemSelectedListener(this);
 
+        // Miramos si hay grabado Nickname y lo recuperamos para mostrarlo en pantalla
+        nickName = findViewById(R.id.nickNameET);
+        nickName.setText(PreferenciasUsuario.recuperarNick(this.getApplicationContext()));
 
+        // Mostramos los records de cada juego en pantalla
+        recordsTV = findViewById(R.id.recordsET);
+        String records = PreferenciasUsuario.recuperarRecordTXT(this.getApplicationContext(), Constantes.RECORDCLASICO);
+        records += "\n";
+        records += PreferenciasUsuario.recuperarRecordTXT(this.getApplicationContext(), Constantes.RECORDALEATORIO);
+        records += "\n";
+        records += PreferenciasUsuario.recuperarRecordTXT(this.getApplicationContext(), Constantes.RECORDDUPLICAR);
+
+        recordsTV.setText(records);
 
     }
 
@@ -53,10 +65,13 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
         // parent.getItemAtPosition(pos)
         Log.d("MIAPP", "TOCADO " + pos);
 
-        EditText nombreJugadorET = findViewById(R.id.nickNameET);
-        if (nombreJugadorET.getText() == null) {
-            nombreJugadorET.setText("Jugador");
+
+        if (nickName.getText() == null) {
+            nickName.setText("Jugador");
         }
+
+        // Grabamos el NickName en Shared Preferences
+        PreferenciasUsuario.grabarNick(this.getApplicationContext(), nickName.getText().toString());
 
 
         switch (pos) {
@@ -64,8 +79,6 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
                 Log.d("MIAPP", "Seleccionado menu: " + pos);
                 // Lanzar la version original
                 Intent intent0 = new Intent(this, MainActivity.class);
-
-                intent0.putExtra(Constantes.NOMBREJUGADOR, nombreJugadorET.getText().toString());
                 startActivity(intent0);
                 this.finish();
 
@@ -74,7 +87,6 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
                 // Lanzar la version Dividir
                 Log.d("MIAPP", "Seleccionado menu: " + pos);
                 Intent intent = new Intent(this, SetNumHijos.class);
-                intent.putExtra(Constantes.NOMBREJUGADOR, nombreJugadorET.getText().toString());
                 startActivity(intent);
                 this.finish();
                 break;
@@ -82,7 +94,6 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
             case 3:
                 // Lanzar la version Aleatoria
                 Intent intent2 = new Intent(this, AleatorioActivity.class);
-                intent2.putExtra(Constantes.NOMBREJUGADOR, nombreJugadorET.getText().toString());
                 startActivity(intent2);
                 this.finish();
                 break;
@@ -112,5 +123,10 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
     }
 
 
+    public void VerHistorico(View view) {
+        // Lanzar la version Aleatoria
+        Intent intentHistorico = new Intent(this, HistoricoActivity.class);
+        startActivity(intentHistorico);
+    }
 }
 

@@ -33,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
         this.numtoques = 0;
         this.boton = findViewById(R.id.empezarBTN);
 
-
-        Intent intent = getIntent();
-        nombreJugador = intent.getStringExtra(Constantes.NOMBREJUGADOR);
-
-
-
     }
 
 
@@ -67,21 +61,31 @@ public class MainActivity extends AppCompatActivity {
 
         this.finish();
 
+        // Recuperar el nombre del jugador
+        nombreJugador = PreferenciasUsuario.recuperarNick(this.getApplicationContext());
+
         // Mirar si el jugador ha superado el record
         double record = PreferenciasUsuario.recuperarRecord(this.getApplicationContext(), Constantes.RECORDCLASICO);
 
         // Si es un record, guardarlo
-        if (tiemporecord > record) {
-            Toast.makeText(this, "Felicidades " + nombreJugador + "Has superado el record!!", Toast.LENGTH_LONG).show();
+        String isrecord = "";
+        if (tiemporecord < record || record == -1) {
+            Toast.makeText(this, "Felicidades " + nombreJugador + "\nHas superado el record!!", Toast.LENGTH_LONG).show();
             PreferenciasUsuario.grabarRecord(this.getApplicationContext(), Constantes.RECORDCLASICO, nombreJugador, tiemporecord);
+            isrecord = "!";
         }
+
+        // Guardamos la partida en el Histórico
+        PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "CLASICO#" + nombreJugador + "#0#" + tiemporecord + "#" + isrecord);
+
+        // Cerrar la actividad
+        this.finish();
 
         Intent intent = new Intent(this, SpinnerActivity.class);
         startActivity(intent);
 
         /*
-        // Cerrar la actividad
-        this.finish();
+
         // Cerrar del todo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             this.finishAffinity();

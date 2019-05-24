@@ -25,11 +25,24 @@ public class SetNumHijos extends AppCompatActivity {
 
         dificultadPicker.setMinValue(5);
         dificultadPicker.setMaxValue(30);
-        dificultadPicker.setValue(15);
+
+
+        // Recuperamos de Shared Preferences la selección del usuario en el último juego
+        int tokes = PreferenciasUsuario.recuperarTokes(this.getApplicationContext());
+        if (tokes == -1) {
+            dificultadPicker.setValue(15);
+        } else {
+            dificultadPicker.setValue(tokes);
+        }
+
 
     }
 
     public void jugar(View v) {
+        // Guardamos la elección del usuario para la siguiente vez que juegue
+        PreferenciasUsuario.grabarTokes(this.getApplicationContext(), dificultadPicker.getValue());
+
+        // Lanzamos el juego
         Intent intent = new Intent(this, DuplicarActivity.class);
         intent.putExtra("NTOKES", dificultadPicker.getValue());
         startActivity(intent);

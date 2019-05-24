@@ -21,6 +21,8 @@ public class AleatorioActivity extends AppCompatActivity {
     private static int totalCuadros;
     private LinearLayout linearBase;
     private long tiempo;
+    private String nombreJugador;
+    private int totalCuadrosOriginal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class AleatorioActivity extends AppCompatActivity {
         tiempo = System.currentTimeMillis();
 
         layoutAleatorio();
+        totalCuadrosOriginal = totalCuadros;    // Guardamos para luego mostrar el nivel aleatorio que salió
 
 
         Log.d("TOCADO", "Total de cuadros"  + totalCuadros);
@@ -119,6 +122,24 @@ public class AleatorioActivity extends AppCompatActivity {
                 Double tiempodbl = tiempo / 1000d;
                 String tiempotxt = String.format("Has tardado: %1$.3f segundos", tiempodbl);
                 Toast.makeText(this, tiempotxt, Toast.LENGTH_LONG).show();
+
+                // Recuperar el nombre del jugador
+                nombreJugador = PreferenciasUsuario.recuperarNick(this.getApplicationContext());
+
+                // Mirar si el jugador ha superado el record
+                double record = PreferenciasUsuario.recuperarRecord(this.getApplicationContext(), Constantes.RECORDALEATORIO);
+
+                String isrecord = "";
+                // Si es un record, guardarlo
+                if (tiempodbl < record || record == -1) {
+                    Toast.makeText(this, "Felicidades " + nombreJugador + "\nHas superado el record!!", Toast.LENGTH_LONG).show();
+                    PreferenciasUsuario.grabarRecord(this.getApplicationContext(), Constantes.RECORDALEATORIO, " " + nombreJugador + " Level " + totalCuadrosOriginal, tiempodbl);
+                    isrecord = "!";
+                }
+
+                // Guardamos la partida en el Histórico
+                PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "ALEATORIO#" + nombreJugador + "#0#" + tiempodbl + "#" + isrecord);
+
                 salir();
             }
         }
