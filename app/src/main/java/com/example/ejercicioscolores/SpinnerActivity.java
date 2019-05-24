@@ -1,13 +1,16 @@
 package com.example.ejercicioscolores;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class SpinnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -24,6 +27,9 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
 
     private static final String[] NOMBRES = {"SELECCIONA UNA OPCION", "JUEGO TRADICIONAL", "DUPLICA CAJAS", "PANTALLA ALEATORIA"};
 
+    private TextView recordsTV;
+    private String records;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,9 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner.setOnItemSelectedListener(this);
+
+
+
     }
 
 
@@ -44,12 +53,19 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
         // parent.getItemAtPosition(pos)
         Log.d("MIAPP", "TOCADO " + pos);
 
+        EditText nombreJugadorET = findViewById(R.id.nickNameET);
+        if (nombreJugadorET.getText() == null) {
+            nombreJugadorET.setText("Jugador");
+        }
+
 
         switch (pos) {
             case 1:
                 Log.d("MIAPP", "Seleccionado menu: " + pos);
                 // Lanzar la version original
                 Intent intent0 = new Intent(this, MainActivity.class);
+
+                intent0.putExtra(Constantes.NOMBREJUGADOR, nombreJugadorET.getText().toString());
                 startActivity(intent0);
                 this.finish();
 
@@ -58,6 +74,7 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
                 // Lanzar la version Dividir
                 Log.d("MIAPP", "Seleccionado menu: " + pos);
                 Intent intent = new Intent(this, SetNumHijos.class);
+                intent.putExtra(Constantes.NOMBREJUGADOR, nombreJugadorET.getText().toString());
                 startActivity(intent);
                 this.finish();
                 break;
@@ -65,6 +82,7 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
             case 3:
                 // Lanzar la version Aleatoria
                 Intent intent2 = new Intent(this, AleatorioActivity.class);
+                intent2.putExtra(Constantes.NOMBREJUGADOR, nombreJugadorET.getText().toString());
                 startActivity(intent2);
                 this.finish();
                 break;
@@ -79,5 +97,20 @@ public class SpinnerActivity extends AppCompatActivity implements AdapterView.On
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //TODO GUARDAR LOS RECORDS
+
+
+
+        // records = ficherosp.getString("RECORDS" , "Record    -----   0\nRecord    -----   1\nRecord    -----   2\n");
+
+
+    }
+
+
 }
 

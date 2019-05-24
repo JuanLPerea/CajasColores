@@ -190,6 +190,9 @@ public class AleatorioActivity extends AppCompatActivity {
 
     private void salir() {
         // Cerrar la actividad
+
+        this.finish();
+
         Intent intent = new Intent(this, SpinnerActivity.class);
         startActivity(intent);
 

@@ -1,6 +1,7 @@
 package com.example.ejercicioscolores;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private int numtoques;
     private long tiempo;
     private Button boton;
+    private double tiemporecord;
+    private String nombreJugador;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
         this.color = getResources().getColor(R.color.negro);
         this.numtoques = 0;
         this.boton = findViewById(R.id.empezarBTN);
+
+
+        Intent intent = getIntent();
+        nombreJugador = intent.getStringExtra(Constantes.NOMBREJUGADOR);
+
+
+
     }
 
 
@@ -41,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             //   if (numtoques == 1) tiempo = System.currentTimeMillis();
             if (numtoques == 6) {
                 tiempo = System.currentTimeMillis() - tiempo;
-                Double tiempodbl = tiempo / 1000d;
-                String tiempotxt = String.format("Has tardado: %1$.3f segundos", tiempodbl);
+                tiemporecord = tiempo / 1000d;
+                String tiempotxt = String.format("Has tardado: %1$.3f segundos", tiemporecord);
                 Toast.makeText(this, tiempotxt, Toast.LENGTH_LONG).show();
                 salir();
             }
@@ -52,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void salir() {
+
+        this.finish();
+
+        // Mirar si el jugador ha superado el record
+        double record = PreferenciasUsuario.recuperarRecord(this.getApplicationContext(), Constantes.RECORDCLASICO);
+
+        // Si es un record, guardarlo
+        if (tiemporecord > record) {
+            Toast.makeText(this, "Felicidades " + nombreJugador + "Has superado el record!!", Toast.LENGTH_LONG).show();
+            PreferenciasUsuario.grabarRecord(this.getApplicationContext(), Constantes.RECORDCLASICO, nombreJugador, tiemporecord);
+        }
 
         Intent intent = new Intent(this, SpinnerActivity.class);
         startActivity(intent);
@@ -127,4 +150,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }

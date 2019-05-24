@@ -95,6 +95,7 @@ public class DuplicarActivity extends AppCompatActivity {
                 break;
             case R.id.reiniciarBTN:
                 raiz.removeAllViews();
+                numeroCuadros = 0;
                 Toast.makeText(this, "Reiniciado juego!!", Toast.LENGTH_LONG).show();
                 tiempo = System.currentTimeMillis();
                 break;
@@ -167,6 +168,8 @@ public class DuplicarActivity extends AppCompatActivity {
 
     private void salir() {
         // Cerrar la actividad
+
+        this.finish();
 
         Intent intent = new Intent(this, SpinnerActivity.class);
         startActivity(intent);

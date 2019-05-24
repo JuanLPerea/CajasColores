@@ -8,9 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SetNumHijos" />
+        android:theme="@style/AppTheme"
+        android:windowSoftInputMode="stateAlwaysHidden">
+        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".SetNumHijos"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".AleatorioActivity" />
         <activity android:name=".DuplicarActivity" />
         <activity android:name=".BotonesActivity" />
