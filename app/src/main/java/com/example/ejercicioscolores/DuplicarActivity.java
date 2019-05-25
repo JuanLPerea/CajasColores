@@ -177,7 +177,7 @@ public class DuplicarActivity extends AppCompatActivity {
             }
 
             // Guardamos la partida en el Histórico
-            PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "DUPLICA#" + nombreJugador + "#0#" + tiempodbl + "#" + isrecord);
+            PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "DUPLICA#" + nombreJugador + "#" + numeroCuadrosParaGanar+ "#" + tiempodbl + "#" + isrecord);
 
             salir();
         }

@@ -138,7 +138,7 @@ public class AleatorioActivity extends AppCompatActivity {
                 }
 
                 // Guardamos la partida en el Histórico
-                PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "ALEATORIO#" + nombreJugador + "#0#" + tiempodbl + "#" + isrecord);
+                PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "ALEATORIO#" + nombreJugador + "#" + totalCuadrosOriginal+ "#" + tiempodbl + "#" + isrecord);
 
                 salir();
             }

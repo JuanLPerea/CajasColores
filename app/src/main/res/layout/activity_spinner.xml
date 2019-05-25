@@ -80,7 +80,8 @@
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:text="Records 1\nRecords 2\nRecords 3"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        app:autoSizeTextType="uniform" />
 
     <TextView
         android:id="@+id/textView5"
