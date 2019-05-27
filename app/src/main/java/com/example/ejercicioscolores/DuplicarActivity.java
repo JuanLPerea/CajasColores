@@ -26,7 +26,6 @@ public class DuplicarActivity extends AppCompatActivity {
     private int numeroHijos;
     private int numeroCuadrosParaGanar;
     private long tiempo;
-    private String nombreJugador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,24 +160,6 @@ public class DuplicarActivity extends AppCompatActivity {
             Double tiempodbl = tiempo / 1000d;
             String tiempotxt = String.format("Has tardado: %1$.3f segundos", tiempodbl);
             Toast.makeText(this, tiempotxt, Toast.LENGTH_LONG).show();
-
-            // Recuperar el nombre del jugador
-            nombreJugador = PreferenciasUsuario.recuperarNick(this.getApplicationContext());
-
-            // Mirar si el jugador ha superado el record
-            double record = PreferenciasUsuario.recuperarRecord(this.getApplicationContext(), Constantes.RECORDDUPLICAR);
-
-            // Si es un record, guardarlo
-            String isrecord = "";
-            if (tiempodbl < record || record == -1) {
-                Toast.makeText(this, "Felicidades " + nombreJugador + "\nHas superado el record!!", Toast.LENGTH_LONG).show();
-                PreferenciasUsuario.grabarRecord(this.getApplicationContext(), Constantes.RECORDDUPLICAR, " " + nombreJugador + " Level " + numeroCuadrosParaGanar, tiempodbl);
-                isrecord = "!";
-            }
-
-            // Guardamos la partida en el Histórico
-            PreferenciasUsuario.historicoAdd(this.getApplicationContext(), "DUPLICA#" + nombreJugador + "#" + numeroCuadrosParaGanar+ "#" + tiempodbl + "#" + isrecord);
-
             salir();
         }
 

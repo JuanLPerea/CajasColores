@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity android:name=".HistoricoActivity"></activity>
-        <activity android:name=".WebViewActivity" />
+        <activity android:name=".WebViewActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SetNumHijos"
@@ -19,9 +18,7 @@
         <activity android:name=".AleatorioActivity" />
         <activity android:name=".DuplicarActivity" />
         <activity android:name=".BotonesActivity" />
-        <activity
-            android:name=".SpinnerActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".SpinnerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
